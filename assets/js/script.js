@@ -161,8 +161,11 @@ function getRandom(length, chars) {
 function generatePassword() {
   const getPass = getPasswordOptions();
   
+  // create random password only when user input all necessery values
   if(getPass){
-    console.log(getPass);
+    return getRandom(getPass.passwordLength, getPass.charTypes);
+  }else{
+    return false;
   }
 }
 
@@ -174,7 +177,8 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
 
-  passwordText.value = password;
+  // display generated passowrd to the screen
+  if(password) passwordText.value = password;
 }
 
 // Add event listener to generate button
