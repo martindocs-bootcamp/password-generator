@@ -51,7 +51,45 @@ header {
 }
 
 .card-body {
+  position: relative;
   min-height: 100px;
+}
+
+/* COPY TO CLIPBOARD */
+@keyframes fadeInOut {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+.clipboard {
+  position: absolute;
+  top: 5px;
+  right: 30px;
+}
+
+.clipboard-copy, 
+.clipboard-mark{
+  position: absolute;
+  height: 25px;
+  width: 25px;
+
+}
+
+.clipboard-copy {
+  opacity: 0.5;
+}
+
+.clipboard-copy:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0; 
+  display: none;
 }
 
 .card-footer {

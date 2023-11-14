@@ -127,10 +127,13 @@ function getPasswordOptions() {
       charTypes = [...charTypes, ...specialCharacters];
     }
 
-    
-    return {
-      passwordLength: passwordLength, 
-      charTypes: charTypes.join('')
+    if(charTypes.length !== 0){
+      return {
+        passwordLength: passwordLength, 
+        charTypes: charTypes.join('')
+      }
+    }else{
+      alert('Ensure that at least one character type is chosen.')
     }
   }
 
@@ -181,5 +184,32 @@ function writePassword() {
   if(password) passwordText.value = password;
 }
 
+
+// copy to clipboard
+const clipboard = document.querySelector('#clipboard-container');
+
+function copyToClipboard(e) {
+  const password = document.querySelector('#password');
+  if(e.target.className === 'clipboard-copy' && password.value !== ''){
+    const copy = document.querySelector('.clipboard-copy');
+    const mark = document.querySelector('.clipboard-mark');
+
+    copy.style.animation = 'fadeInOut 0.5s ease-in-out';
+    mark.style.animation = 'fadeInOut 0.5s ease-in-out';
+    
+    copy.classList.add('hide');
+    mark.classList.remove('hide');
+
+    navigator.clipboard.writeText(password.value);
+
+     setTimeout(() => {
+      mark.classList.add('hide'); 
+      copy.classList.remove('hide');
+    }, 1000);
+  }  
+}
+
+
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
+clipboard.addEventListener('click', copyToClipboard)
