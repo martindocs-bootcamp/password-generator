@@ -150,9 +150,29 @@ function getPasswordOptions() {
   return false;
 }
 
-// Function for getting a random element from an array
-function getRandom(length, chars) {
-  // variable for storing generated random password 
+
+// Generates a random password of the specified length using the Math.random() function,
+// which is less secure and not designed for generating secure passwords. 
+function getMathRandom(length, chars) {
+   // variable for storing generated password 
+   let randomPassword = '';
+
+  for(let i = 0; i < length; i++){     
+    // Generate a random index within the range of chars length
+    let char = Math.floor(Math.random() * chars.length  // random number between 0 (inclusive) and the chars length
+                                        + 1); // +1 is used to adjust the range to be inclusive of the upper bound
+    // Convert random number to the character and append to randomPassword variable
+    randomPassword += chars.charAt(char);  
+  }
+
+  return randomPassword;
+}
+
+
+// Generates a random password of the specified length using the Web Cryptography API,
+// which is more secure than using the Math.random() method.
+function getCryptoRandom(length, chars) {
+  // variable for storing generated password 
   let randomPassword = '';
 
   // unsigned 32-bit array used to get random numbers, where length is the user password length 
@@ -171,17 +191,19 @@ function getRandom(length, chars) {
   return randomPassword;
 }
 
+
 // Function to generate password with user input
 function generatePassword() {
   const getPass = getPasswordOptions();
   
   // create random password only when user input all necessery values
   if(getPass){
-    return getRandom(getPass.passwordLength, getPass.charTypes);
+    return getMathRandom(getPass.passwordLength, getPass.charTypes);
   }else{
     return false;
   }
 }
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
@@ -194,6 +216,7 @@ function writePassword() {
   // display generated passowrd to the screen
   if(password) passwordText.value = password;
 }
+
 
 // Copy to clipboard
 const clipboard = document.querySelector('#clipboard-container');
@@ -226,6 +249,7 @@ function copyToClipboard(e) {
     }, 1000); // Revert changes after 1s
   }  
 }
+
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
