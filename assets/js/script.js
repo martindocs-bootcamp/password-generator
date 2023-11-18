@@ -92,7 +92,7 @@ const upperCasedCharacters = [
 function getPasswordOptions() {
   let stop = true; // Variable to control the loop
   let charTypes = []; // Array to store selected character types
-  let passwordLength = 0; // Variable to store the chosen password length
+  let passwordLength = 0; // Variable to store the password length
   
   // Loop to ensure a valid password length is entered
   while (stop) {
@@ -101,8 +101,8 @@ function getPasswordOptions() {
         
     if(passwordLength === null || Number(passwordLength) >= 8 && Number(passwordLength) <= 128){
       stop = false; // Exit the loop if a valid input is received
-    }else if(passwordLength !== null && (Number(passwordLength) < 8 || Number(passwordLength) > 128)) {
-      // Display an alert for an invalid password length
+    }else if(passwordLength !== null && (Number(passwordLength) < 8 || Number(passwordLength) > 128)){
+      // Display an alert for an invalid password length      
       alert('Please enter a valid password length');
     }else{
       // Display an alert for non-numeric input
@@ -113,22 +113,26 @@ function getPasswordOptions() {
   // Check if the user provided a password length (didn't click cancel)
   if(passwordLength !== null){
     // Prompt user for character type options
-    const lowerCase = confirm('Do you want to include lowercase characters');
+    const lowerCase = confirm('Click OK to confirm to include lowercase characters.');
+
     if(lowerCase) {
       charTypes = [...charTypes, ...lowerCasedCharacters];
     }
   
-    const upperCase = confirm('Do you want to include uppercase characters');
+    const upperCase = confirm('Click OK to confirm to include uppercase characters.');
+
     if(upperCase) {
       charTypes = [...charTypes, ...upperCasedCharacters];
     }
     
-    const numericValues = confirm('Do you want to include numeric values');
+    const numericValues = confirm('Click OK to confirm to include numeric characters.');
+
     if(numericValues) {
       charTypes = [...charTypes, ...numericCharacters];
     }
 
-    const specialChars = confirm('Do you want to include special characters [$@%&*, etc]');  
+    const specialChars = confirm('Click OK to confirm to include special characters [$@%&*, etc].');  
+      
     if(specialChars) {
       charTypes = [...charTypes, ...specialCharacters];
     }
@@ -151,8 +155,7 @@ function getPasswordOptions() {
 }
 
 
-// Generates a random password of the specified length using the Math.random() function,
-// which is less secure and not designed for generating secure passwords. 
+// Generates a random password of the specified length using the Math.random() function
 function getMathRandomNum(length, chars) {
    // variable for storing generated password 
    let randomPassword = '';
@@ -169,8 +172,7 @@ function getMathRandomNum(length, chars) {
 }
 
 
-// Generates a random password of the specified length using the Web Cryptography API,
-// which is more secure than using the Math.random() method.
+// Generates a random password of the specified length using the Web Cryptography API
 function getCryptoRandomNum(length, chars) {
   // variable for storing generated password 
   let randomPassword = '';
@@ -178,7 +180,7 @@ function getCryptoRandomNum(length, chars) {
   // unsigned 32-bit array used to get random numbers, where length is the user password length 
   const array = new Uint32Array(length);
 
-  // generte randoms numbers using  Web Cryptography API used to fill an array with cryptographically secure random values.
+  // generte randoms numbers using  Web Cryptography API to fill an array with cryptographically secure random values.
   self.crypto.getRandomValues(array);
 
   // loop through array and add new random character to the 'randomPassword' variable
@@ -195,6 +197,7 @@ function getCryptoRandomNum(length, chars) {
 // Function to generate password with user input
 function generatePassword() {
   const getPass = getPasswordOptions();  
+
   // Get the value of the selected radio button (simple or secure)
   const selectedOptions = document.querySelector('.options:checked').value;
 
@@ -226,20 +229,27 @@ function writePassword() {
 
 // Get references to the .card-options element
 const passwordOptions = document.querySelector('.card-options');
+
 // Function to update the placeholder text
 function placeholderText() { 
   // The checked radio button
   const options = document.querySelector('.options:checked');
+
   // The text area where placeholder goes
   const passwordPlaceholder = document.querySelector('.password');
- 
+  
   // Check if a radio button is selected
   if(options){
-    const selectedValue = options.value;
+    // Reset the generated password if user toggle the options
+    if(passwordPlaceholder.value !== '') passwordPlaceholder.value = '';
+
+    // Store the selected toggle option
+    const selectedValue = options.value;    
 
     // Update the placeholder text based on the selected option
     if(selectedValue === 'simple') {
       passwordPlaceholder.placeholder = "Generates a password using basic randomization method."
+
     } else{
       passwordPlaceholder.placeholder = "Generates a highly secure password using advanced cryptographic method."
     }
@@ -250,9 +260,11 @@ function placeholderText() {
 // Copy to clipboard
 const clipboard = document.querySelector('#clipboard-container');
 // Function to handle copying the password to the clipboard
+
 function copyToClipboard(e) {
   // Select the password input element from the DOM
   const password = document.querySelector('#password');
+
   // Check if the click event was triggered by the clipboard copy button and if the password is not empty
   if(e.target.className === 'clipboard-copy' && password.value !== ''){
     // Select the clipboard copy button and the clipboard mark elements
@@ -292,6 +304,7 @@ passwordOptions.addEventListener('click', placeholderText)
 document.addEventListener('DOMContentLoaded', function () {
   // Check the 'simple' radio button by default
   document.querySelector('#simple').checked = true;
+  
   // Set password to default value, empty string
   document.querySelector('#password').value = '';
 });

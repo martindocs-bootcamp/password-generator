@@ -11,7 +11,7 @@ Explore the capabilities of this interactive web application designed for passwo
 ## Key Highlights
 
 - **Level of Security:**
-  User have two option to choose from to generate a password. First option, `Simple`, uses the `Math.random()` method. The second option, `Secure` uses `crypto.getRandomValues()` method, providing enhanced security through the Web Cryptography API.
+  User have two option to choose from to generate a password. First option, `Simple` (default), uses the `Math.random()` method. The second option, `Secure` uses `crypto.getRandomValues()` method, providing enhanced security through the Web Cryptography API.
 
 - **Password Generation:**
   Generate secure passwords with a click, providing quick access to strong and randomized character combinations.
