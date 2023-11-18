@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="Cache-Control" content="no-store, must-revalidate">
     <title>Password Generator</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css?v=1" />
   </head>
   <body>
     <div class="wrapper">
@@ -14,13 +15,28 @@
       </header>
       <div class="card">
         <div class="card-header">
-          <h2>Generate a Password</h2>
+          <div class="card-container">        
+            <h2>Generate a Password</h2>
+            <div class="card-options">
+              <input type="radio" name="radio" id="simple" class="options" value="simple" checked>
+              <input type="radio" name="radio" id="secure" class="options" value="secure">
+
+              <label for="simple" class="radio-label radio-simple">Simple</label>             
+              <div class="face"></div>
+              <div class="eyes left-eye"></div>
+              <div class="eyes right-eye"></div>
+              <div class="mouth"></div>
+              <div class="toggle-options"></div>
+              <label for="secure" class="radio-label radio-secure">Secure</label>
+            </div>
+           </div>
         </div>
         <div class="card-body">
           <textarea
             readonly
             id="password"
-            placeholder="Your Secure Password"
+            class="password"
+            placeholder="Generates a password using basic randomization method."
             aria-label="Generated Password"
           ></textarea>
           <div class="clipboard">
