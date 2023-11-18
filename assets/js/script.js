@@ -153,7 +153,7 @@ function getPasswordOptions() {
 
 // Generates a random password of the specified length using the Math.random() function,
 // which is less secure and not designed for generating secure passwords. 
-function getMathRandom(length, chars) {
+function getMathRandomNum(length, chars) {
    // variable for storing generated password 
    let randomPassword = '';
 
@@ -171,7 +171,7 @@ function getMathRandom(length, chars) {
 
 // Generates a random password of the specified length using the Web Cryptography API,
 // which is more secure than using the Math.random() method.
-function getCryptoRandom(length, chars) {
+function getCryptoRandomNum(length, chars) {
   // variable for storing generated password 
   let randomPassword = '';
 
@@ -194,11 +194,17 @@ function getCryptoRandom(length, chars) {
 
 // Function to generate password with user input
 function generatePassword() {
-  const getPass = getPasswordOptions();
-  
+  const getPass = getPasswordOptions();  
+  // Get the value of the selected radio button (simple or secure)
+  const selectedOptions = document.querySelector('.options:checked').value;
+
   // create random password only when user input all necessery values
   if(getPass){
-    return getMathRandom(getPass.passwordLength, getPass.charTypes);
+    if(selectedOptions === 'simple'){
+      return getMathRandomNum(getPass.passwordLength, getPass.charTypes);
+    }else if(selectedOptions === 'secure'){
+      return getCryptoRandomNum(getPass.passwordLength, getPass.charTypes);
+    }
   }else{
     return false;
   }
@@ -206,31 +212,53 @@ function generatePassword() {
 
 
 // Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
+const generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector('#password');
-
+  const password = generatePassword();
+  const passwordText = document.querySelector('#password');
+ 
   // display generated passowrd to the screen
   if(password) passwordText.value = password;
 }
 
 
+// Get references to the .card-options element
+const passwordOptions = document.querySelector('.card-options');
+// Function to update the placeholder text
+function placeholderText() { 
+  // The checked radio button
+  const options = document.querySelector('.options:checked');
+  // The text area where placeholder goes
+  const passwordPlaceholder = document.querySelector('.password');
+ 
+  // Check if a radio button is selected
+  if(options){
+    const selectedValue = options.value;
+
+    // Update the placeholder text based on the selected option
+    if(selectedValue === 'simple') {
+      passwordPlaceholder.placeholder = "Generates a password using basic randomization method."
+    } else{
+      passwordPlaceholder.placeholder = "Generates a highly secure password using advanced cryptographic method."
+    }
+  } 
+}
+
+
 // Copy to clipboard
 const clipboard = document.querySelector('#clipboard-container');
-
 // Function to handle copying the password to the clipboard
 function copyToClipboard(e) {
-   // Select the password input element from the DOM
+  // Select the password input element from the DOM
   const password = document.querySelector('#password');
   // Check if the click event was triggered by the clipboard copy button and if the password is not empty
   if(e.target.className === 'clipboard-copy' && password.value !== ''){
     // Select the clipboard copy button and the clipboard mark elements
     const copy = document.querySelector('.clipboard-copy');
     const mark = document.querySelector('.clipboard-mark');
-
+    
     // Apply fadeInOut animation to the copy button and the clipboard mark
     copy.style.animation = 'fadeInOut 0.5s ease-in-out';
     mark.style.animation = 'fadeInOut 0.5s ease-in-out';
@@ -238,10 +266,10 @@ function copyToClipboard(e) {
     // Hide the copy button and show the clipboard mark
     copy.classList.add('hide');
     mark.classList.remove('hide');
-
+    
     // Copy the password to the clipboard
     navigator.clipboard.writeText(password.value);
-
+    
     // Set a timeout to revert the UI changes
     setTimeout(() => {
       mark.classList.add('hide'); 
@@ -251,7 +279,19 @@ function copyToClipboard(e) {
 }
 
 
-// Add event listener to generate button
+// Event listener to generate button
 generateBtn.addEventListener('click', writePassword);
-// Add event listener to copy password to clipboard
+
+// Event listener to copy password to clipboard
 clipboard.addEventListener('click', copyToClipboard);
+
+// Event listener to change placeholder text
+passwordOptions.addEventListener('click', placeholderText)
+
+// Reset to the default state 
+document.addEventListener('DOMContentLoaded', function () {
+  // Check the 'simple' radio button by default
+  document.querySelector('#simple').checked = true;
+  // Set password to default value, empty string
+  document.querySelector('#password').value = '';
+});
