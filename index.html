@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta http-equiv="Cache-Control" content="no-store, must-revalidate">
     <title>Password Generator</title>
-    <link rel="stylesheet" href="./assets/css/style.css?v=1" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
     <div class="wrapper">
@@ -21,17 +20,19 @@
               <input type="radio" name="radio" id="simple" class="options" value="simple" checked>
               <input type="radio" name="radio" id="secure" class="options" value="secure">
 
+              <!-- toggle button simple/secure option -->
               <label for="simple" class="radio-label radio-simple">Simple</label>             
-              <div class="face"></div>
-              <div class="eyes left-eye"></div>
-              <div class="eyes right-eye"></div>
-              <div class="mouth"></div>
-              <div class="toggle-options"></div>
+                <div class="face"></div>
+                <div class="eyes left-eye"></div>
+                <div class="eyes right-eye"></div>
+                <div class="mouth"></div>
+                <div class="toggle-options"></div>
               <label for="secure" class="radio-label radio-secure">Secure</label>
             </div>
            </div>
         </div>
         <div class="card-body">
+          <!-- display generated password -->
           <textarea
             readonly
             id="password"
@@ -39,10 +40,11 @@
             placeholder="Generates a password using basic randomization method."
             aria-label="Generated Password"
           ></textarea>
+          <!-- clipboard icon -->
           <div class="clipboard">
             <div id="clipboard-container" class="clipboard-container">
-              <img class="clipboard-copy" src="./assets/svg/clipboard.svg" alt="Clipboard icon">
-              <img class="clipboard-mark hide" src="./assets/svg/mark.svg" alt="Clipboard`icon">            
+              <img class="clipboard-copy" src="./assets/svg/clipboard.svg" alt="Clipboard copy icon">
+              <img class="clipboard-mark hide" src="./assets/svg/mark.svg" alt="Clipboard mark icon">            
             </div>
           </div>
         </div>
