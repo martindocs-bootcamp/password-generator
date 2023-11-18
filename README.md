@@ -5,7 +5,7 @@ Explore the capabilities of this interactive web application designed for passwo
 
 ## Screenshot
 
-![Main screen](./assets/images/password-generator2.png)
+![Main screen](./assets/images/password-generator.png)
 *Effortlessly generate passwords using clean and responsive user interface.*
 
 ## Key Highlights
