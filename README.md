@@ -5,10 +5,13 @@ Explore the capabilities of this interactive web application designed for passwo
 
 ## Screenshot
 
-![Main screen](./assets/images/password-generator.png)
-*Effortlessly generate passwords using clean and responsive user interface*
+![Main screen](./assets/images/password-generator2.png)
+*Effortlessly generate passwords using clean and responsive user interface.*
 
 ## Key Highlights
+
+- **Level of Security:**
+  User have two option to choose from to generate a password. First option, `Simple`, uses the `Math.random()` method. The second option, `Secure` uses `crypto.getRandomValues()` method, providing enhanced security through the Web Cryptography API.
 
 - **Password Generation:**
   Generate secure passwords with a click, providing quick access to strong and randomized character combinations.
@@ -17,17 +20,16 @@ Explore the capabilities of this interactive web application designed for passwo
   Tailor your passwords by specifying length and selecting character types, ensuring they meet your unique security requirements.
 
 - **Validation:**
-  - The app validates the input for the length of the password, ensuring it is at least 8 characters but not more than 128.
-  - For character types, at least one type must be selected.
+  The app validates the input for the length of the password and for character types, and at least one of character types must be selected.
 
 - **Display Options:**
   The generated password is displayed directly on the page, providing the user with the password based on their selected criteria.
 
-- **Copy Password**
-   There are two ways to copy the password, select it and use the `CTRL+C` option or click on the copy icon to copy password to the clipboard.
+- **Copy Password:**
+   There are two ways to copy the password, the text or using the copy icon 📋.
 
 
-## How to Use
+## Installation
 
 1. **Clone or Download:**
    Get the application by cloning the repository or downloading the source code to your local machine.
@@ -38,9 +40,22 @@ Explore the capabilities of this interactive web application designed for passwo
 3. **Explore on GitHub Pages:**
    Alternatively, you can use the Password Generator directly simply navigate to the [GitHub Pages](https://martindocs-bootcamp.github.io/mtatarski-password-generator/) to generate passwords.
 
+## How to Use
+
+Follow these simple steps to generate passwords:
+
+1. Choose your security level: Slide the toggle between `Simple` or `Secure`.
+2. Click the `Generate Password` button. A popup will ask for the password length, which should be between `8` and `128` characters.
+3. Answer prompts about the types of characters you want in the password.
+4. Ensure at least one character type is confirmed; otherwise, the password won't be generated.
+5. Once you've completed the prompts, the password will be displayed on the screen. 
+6. Copy it by selecting the text in the textbox or clicking the copy icon in the top right corner. The password will be copied to the clipboard.
+7. To generate a new password, click the button again and repeat the process.
+
+
 ## Credits
 
-N/A (No contributors at this time).
+N/A (Open for contributions).
 
 ## License
 
