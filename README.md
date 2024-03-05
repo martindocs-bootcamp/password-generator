@@ -1,4 +1,4 @@
-# Marcin Tatarski - Password Generator App
+# Password Generator App
 
 ## Overview
 Explore the capabilities of this interactive web application designed for password generation. The Password Generator provides a user-friendly experience for creating randomized passwords tailored to your specifications.
