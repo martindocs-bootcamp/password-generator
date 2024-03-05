@@ -38,7 +38,7 @@ Explore the capabilities of this interactive web application designed for passwo
    Run the app locally, open the `index.html` file in your preferred web browser.
 
 3. **Explore on GitHub Pages:**
-   Alternatively, you can use the Password Generator directly simply navigate to the [GitHub Pages](https://martindocs-bootcamp.github.io/mtatarski-password-generator/) to generate passwords.
+   Alternatively, you can use the Password Generator directly simply navigate to the [GitHub Pages](https://martindocs-bootcamp.github.io/password-generator/) to generate passwords.
 
 ## How to Use
 
